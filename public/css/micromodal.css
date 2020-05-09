@@ -1,0 +1,310 @@
+/**************************\
+  Basic Modal Styles
+\**************************/
+
+.modal {
+    font-family: inherit;
+  }
+  
+  .modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4000;
+  }
+  
+  .modal__container {
+    background: rgb(252, 252, 252);
+    padding:94px 60px 107px 60px;
+    max-width: 1230px;
+    max-height: 90vh;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 70%;
+  }
+  
+  .modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:relative;
+  }
+  
+ .modal__header h2 {
+    font-weight: 600;
+    font-size: 32px;
+    box-sizing: border-box;
+    flex: 1;
+    text-align: center;
+    color: #4b4b4b;
+    line-height: 54px;
+}
+  .provider-agreement {
+    padding: 0px 160px;
+    line-height: 8px;
+}
+  
+  .modal__close {
+    position: fixed;
+    background: #ffffff;
+    border: 1px solid #222;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    right: -19px;
+    top: -18px;
+  }
+
+  .modal__close:focus{ outline: none; }
+  
+  .modal__header .modal__close:before { content: "\2715"; font-size: 22px;}
+  
+  .modal__content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    color: rgba(0,0,0,.8);
+  }
+  h2.modal__title {
+    font-size: 28px;
+}
+.modal__overlay .modal__container form {
+    height: 600px;
+    overflow-y: auto;
+}
+  
+  .modal__btn {
+    font-size: .875rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background-color: #e6e6e6;
+    color: rgba(0,0,0,.8);
+    border-radius: .25rem;
+    border-style: none;
+    border-width: 0;
+    cursor: pointer;
+    -webkit-appearance: button;
+    text-transform: none;
+    overflow: visible;
+    line-height: 1.15;
+    margin: 0;
+    will-change: transform;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition: -webkit-transform .25s ease-out;
+    transition: transform .25s ease-out;
+    transition: transform .25s ease-out,-webkit-transform .25s ease-out;
+  }
+  
+  .modal__btn:focus, .modal__btn:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  
+  .modal__btn-primary {
+    background-color: #00449e;
+    color: #fff;
+  }
+  footer.modal__footer {
+    display: block;
+    text-align: -webkit-center;
+    margin-top: 80px;
+}
+
+#form_buttons{display: inline;}
+
+.main-column {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.upload-documentaion {
+    max-width: 920px;
+    margin: 0 auto;
+}
+.file-upload.upload-document-popup .file-select .file-select-name {
+    line-height: 40px;
+    display: block;
+    padding: 0 0px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+}
+.file-upload.upload-document-popup .file-select .file-select-name .opform_cheked {
+  position: absolute;
+  bottom:0
+}
+.file-upload.upload-document-popup .file-select {
+    height: 100%;
+    background: none;
+    position: relative;
+}
+.file-upload.upload-document-popup .file-select p {
+    margin: 0;
+    font-size: 22px;
+    text-align: center;
+    padding-top: 126px;
+    line-height: normal;
+    padding-bottom: 40px;
+    overflow: hidden;
+}
+
+.file-upload.upload-document-popup {
+    background: #fff;
+    border-radius: 18px;
+    height: 190px;
+    background: none;
+    box-shadow: 0px 0.2px 1px 1px #687c9652;
+}
+.mr-r-10 {
+    padding-right: 30px;
+}
+.file-upload.upload-document-popup {
+    background: #fff url(/img/popup-document.png) no-repeat;
+    background-position: center 42px;
+    text-indent: 0.01px;
+    text-overflow: "";
+    font-size: 19px;
+    font-family: "Open Sans",sans-serif;
+}
+.file-upload.upload-document-popup.risk-assesment{
+  background: #fff url(/img/risk-document.png) no-repeat;
+  background-position: center 42px;
+}
+.file-upload.upload-document-popup.client-consent-form{
+  background: #fff url(/img/client-form.png) no-repeat;
+  background-position: center 42px;
+}
+.main-column.upload-documentaion .custom-pdr {
+    padding-right: 30px;
+}
+  
+  
+  
+  /**************************\
+    Demo Animation Style
+  \**************************/
+  @keyframes mmfadeIn {
+      from { opacity: 0; }
+        to { opacity: 1; }
+  }
+  
+  @keyframes mmfadeOut {
+      from { opacity: 1; }
+        to { opacity: 0; }
+  }
+  
+  @keyframes mmslideIn {
+    from { transform: translateY(15%); }
+      to { transform: translateY(0); }
+  }
+  
+  @keyframes mmslideOut {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10%); }
+  }
+  
+  .micromodal-slide {
+    display: none;
+  }
+  
+  .micromodal-slide.is-open {
+    display: block;
+  }
+  
+  .micromodal-slide[aria-hidden="false"] .modal__overlay {
+    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="false"] .modal__container {
+    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="true"] .modal__overlay {
+    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="true"] .modal__container {
+    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+  }
+  
+  .micromodal-slide .modal__container,
+  .micromodal-slide .modal__overlay {
+    will-change: transform;
+  }
+  h2.modal__title.service-booking {
+    padding: 0px 190px;
+}
+
+
+  @media(min-width:768px) and (max-width:1170px){
+  .upload-documentaion {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.file-upload.upload-document-popup .file-select p {
+    margin: 0;
+    font-size: 18px;
+}
+h2.modal__title.provider-agreement {
+    padding: 0;
+}
+h2.modal__title.service-booking {
+    padding: 0px 10px;
+}
+}
+
+  @media(min-width:320px) and (max-width:767px){
+  .upload-documentaion {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.file-upload.upload-document-popup .file-select p {
+    margin: 0;
+    font-size: 18px;
+}
+h2.modal__title.provider-agreement {
+    padding: 0;
+}
+.modal__container {
+    width: 100%;
+    padding: 20px;
+}
+.modal__header h2 {
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+}
+.modal__close {
+    right: 0;
+    top: -14px;
+}
+footer.modal__footer {
+    margin-top: 0;
+}
+.create-new.edit-new {
+    margin-top: 20px;
+    max-width: 100%;
+    width: 100%;
+}
+.file-upload.upload-document-popup {
+    margin-bottom: 30px;
+}
+.mr-r-10 {
+    padding-right: 7px;
+}
+h2.modal__title.service-booking {
+    padding: 0px 0px;
+}
+}

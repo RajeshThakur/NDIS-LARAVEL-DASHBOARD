@@ -1,0 +1,144 @@
+@extends('layouts.admin')
+@section('content')
+
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.edit') }} {{ trans('participants.title_singular') }}
+    </div>
+
+    <div class="card-body">
+           
+        <form action="{{ route("admin.participants.update", [$participant->user_id]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
+                <label for="first_name">{{ trans('participants.fields.first_name') }}*</label>
+                <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name', isset($participant) ? $participant->user->first_name : '') }}">
+                @if($errors->has('first_name'))
+                    <p class="help-block">
+                        {{ $errors->first('first_name') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.first_name_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
+                <label for="last_name">{{ trans('participants.fields.last_name') }}*</label>
+                <input type="text" id="last_name" name="last_name" class="form-control" value="{{ old('last_name', isset($participant) ? $participant->user->last_name : '') }}">
+                @if($errors->has('last_name'))
+                    <p class="help-block">
+                        {{ $errors->first('last_name') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.last_name_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                <label for="email">{{ trans('participants.fields.email') }}*</label>
+                <input type="text" id="email" name="email" class="form-control" value="{{ old('email', isset($participant) ? $participant->user->email : '') }}">
+                @if($errors->has('email'))
+                    <p class="help-block">
+                        {{ $errors->first('email') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.email_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+                <label for="address">{{ trans('participants.fields.address') }}*</label>
+                <input type="text" id="address" name="address" class="form-control location" value="{{ old('address', isset($participant) ? $participant->address : '') }}">
+
+                <input type="hidden" id="lat" name="lat" value="{{ old('lat', isset($participant) ? $participant->lat : '') }}" />
+                <input type="hidden" id="lng" name="lng" value="{{ old('lng', isset($participant) ? $participant->lng : '') }}" />
+
+                @if($errors->has('address'))
+                    <p class="help-block">
+                        {{ $errors->first('address') }}
+                    </p>
+                @endif
+                @if($errors->has('lat') || $errors->has('lng'))
+                    <p class="help-block">
+                        {{ $errors->first('lat') }}
+                    </p>
+                @endif
+
+                <p class="helper-block">
+                    {{ trans('participants.fields.address_helper') }}
+                </p>
+            </div>
+           
+            <div class="form-group {{ $errors->has('start_date_ndis') ? 'has-error' : '' }}">
+                <label for="start_date_ndis">{{ trans('participants.fields.start_date_ndis') }}*</label>
+                <input type="text" id="start_date_ndis" name="start_date_ndis" class="form-control datefield"  data-toggle="datetimepicker" data-target="#start_date_ndis" value="{{ old('start_date_ndis', isset($participant) ? $participant->start_date_ndis : '') }}">
+                @if($errors->has('start_date_ndis'))
+                    <p class="help-block">
+                        {{ $errors->first('start_date_ndis') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.start_date_ndis_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('end_date_ndis') ? 'has-error' : '' }}">
+                <label for="end_date_ndis">{{ trans('participants.fields.end_date_ndis') }}*</label>
+                <input type="text" id="end_date_ndis" name="end_date_ndis" class="form-control datefield" data-toggle="datetimepicker" data-target="#end_date_ndis" value="{{ old('end_date_ndis', isset($participant) ? $participant->end_date_ndis : '') }}">
+                @if($errors->has('end_date_ndis'))
+                    <p class="help-block">
+                        {{ $errors->first('end_date_ndis') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.end_date_ndis_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('ndis_number') ? 'has-error' : '' }}">
+                <label for="ndis_number">{{ trans('participants.fields.ndis_number') }}*</label>
+                <input type="text" id="ndis_number" name="ndis_number" class="form-control" value="{{ old('ndis_number', isset($participant) ? $participant->ndis_number : '') }}">
+                @if($errors->has('ndis_number'))
+                    <p class="help-block">
+                        {{ $errors->first('ndis_number') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.ndis_number_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('participant_goals') ? 'has-error' : '' }}">
+                <label for="participant_goals">{{ trans('participants.fields.participant_goals') }}</label>
+                <input type="text" id="participant_goals" name="participant_goals" class="form-control" value="{{ old('participant_goals', isset($participant) ? $participant->participant_goals : '') }}">
+                @if($errors->has('participant_goals'))
+                    <p class="help-block">
+                        {{ $errors->first('participant_goals') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.participant_goals_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('special_requirements') ? 'has-error' : '' }}">
+                <label for="special_requirements">{{ trans('participants.fields.special_requirements') }}</label>
+                <textarea id="special_requirements" name="special_requirements" class="form-control ">{{ old('special_requirements', isset($participant) ? $participant->special_requirements : '') }}</textarea>
+                @if($errors->has('special_requirements'))
+                    <p class="help-block">
+                        {{ $errors->first('special_requirements') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.special_requirements_helper') }}
+                </p>
+            </div>
+            <div>
+
+                <input type="hidden" id="user_id" name="user_id" class="form-control" value="{{ old('user_id', isset($participant) ? $participant->user_id : 0) }}" />
+                <input type="hidden" id="provider_id" name="provider_id" class="form-control" value="{{ old('provider_id', isset($participant) ? $participant->user->provider_id : 0) }}" />
+                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+            </div>
+        </form>
+    </div>
+</div>
+
+@endsection

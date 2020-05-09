@@ -1,0 +1,37 @@
+<?php
+return [
+    'title'                 => 'Accounts',
+    'sw_title'              => 'Contractor (Support Worker)',
+    'sw_external'           => 'External Service',
+    'menus'                 => [
+                                'timesheet' => "Timesheet",
+                                'submissions' => "Submissions",
+                                'payment_history' => "Payment History",
+                                'proda_output' => "PRODA Output",
+                                ],
+    'headings'              => [
+                                'participant' => 'Participant',
+                                'support_worker' => 'Support Worker',
+                                'groups' => 'Groups',
+                                'item_number' => 'Item Number',
+                                'claim_type' => 'Claim Type',
+                                'date' => 'Date',
+                                'start_time' => 'Start Time',
+                                'finish_time' => 'Finish Time',
+                                'total_amount' => 'Total Amount',
+                                'total_hours' => 'Total Hours',
+                                'amount_to_bill_to_participant' => 'Amount to Bill for this Participant',
+                                'total_hours_all_bookings' => 'Total Hours of All Service Bookings',
+                                'id' => 'ID',
+                                'title' => 'Title',
+                                'created' => 'Created',
+                                'updated' => 'Updated',
+                            ],
+    'buttons'               =>  [
+                                'paid' => 'Paid',
+                                'print' => 'Print',
+                                'download' => 'Download',
+                                'as_xls' => 'As XLS',
+                                'as_pdf' => 'As PDF',
+                            ],
+];

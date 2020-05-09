@@ -1,0 +1,69 @@
+{
+    "name": "dmark/laravel-bookings",
+    "description": "Dmark Bookings for NDIS",
+    "type": "library",
+    "keywords": [
+        "cost",
+        "usage",
+        "dmark",
+        "booking",
+        "resource",
+        "schedules",
+        "database",
+        "laravel",
+        "price",
+        "rates"
+    ],
+    "license": "MIT",   
+    "require": {
+        "php": "^7.2.0",
+        "illuminate/console": "~5.8.0",
+        "illuminate/database": "~5.8.0",
+        "illuminate/support": "~5.8.0",
+        "dmark/laravel-cacheable": "~1.0-dev",
+        "dmark/laravel-support": "~1.0-dev",
+        "spatie/eloquent-sortable": "^3.6.0",
+        "spatie/laravel-schemaless-attributes": "^1.4.0",
+        "spatie/laravel-sluggable": "^2.1.0",
+        "spatie/laravel-translatable": "^4.1.0",
+        "watson/validating": "^3.2.0"
+    },
+    "require-dev": {
+        "codedungeon/phpunit-result-printer": "^0.26.0",
+        "illuminate/container": "~5.8.0",
+        "phpunit/phpunit": "^8.1.0"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "Dmark\\Bookings\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dmark\\Bookings\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dmark\\Bookings\\Providers\\BookingsServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

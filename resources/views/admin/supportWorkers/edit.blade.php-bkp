@@ -1,0 +1,93 @@
+@extends('layouts.admin')
+@section('content')
+
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.edit') }} {{ trans('sw.title_singular') }}
+    </div>
+
+    <div class="card-body">
+        <form action="{{ route("admin.support-workers.update", [$supportWorker->id]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
+                <label for="first_name">{{ trans('sw.fields.first_name') }}</label>
+                <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name', isset($supportWorker) ? $supportWorker->first_name : '') }}">
+                @if($errors->has('first_name'))
+                    <p class="help-block">
+                        {{ $errors->first('first_name') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('sw.fields.first_name_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
+                <label for="last_name">{{ trans('sw.fields.last_name') }}</label>
+                <input type="text" id="last_name" name="last_name" class="form-control" value="{{ old('last_name', isset($supportWorker) ? $supportWorker->last_name : '') }}">
+                @if($errors->has('last_name'))
+                    <p class="help-block">
+                        {{ $errors->first('last_name') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('sw.fields.last_name_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                <label for="email">{{ trans('sw.fields.email') }}</label>
+                <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($supportWorker) ? $supportWorker->email : '') }}">
+                @if($errors->has('email'))
+                    <p class="help-block">
+                        {{ $errors->first('email') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('sw.fields.email_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('mobile') ? 'has-error' : '' }}">
+                <label for="mobile">{{ trans('sw.fields.mobile') }}</label>
+                <input type="text" id="mobile" name="mobile" class="form-control" value="{{ old('mobile', isset($supportWorker) ? $supportWorker->mobile : '') }}">
+                @if($errors->has('mobile'))
+                    <p class="help-block">
+                        {{ $errors->first('mobile') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('sw.fields.mobile_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+                <label for="address">{{ trans('sw.fields.address') }}</label>
+                <input type="text" id="address" name="address" class="form-control" value="{{ old('address', isset($supportWorker) ? $supportWorker->address : '') }}">
+                @if($errors->has('address'))
+                    <p class="help-block">
+                        {{ $errors->first('address') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('sw.fields.address_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('registration_groups_id') ? 'has-error' : '' }}">
+                <label for="registration_groups">{{ trans('sw.fields.registration_groups') }}</label>
+                <select name="registration_groups_id" id="registration_groups" class="form-control select2">
+                    @foreach($registration_groups as $id => $registration_groups)
+                        <option value="{{ $id }}" {{ (isset($supportWorker) && $supportWorker->registration_groups ? $supportWorker->registration_groups->id : old('registration_groups_id')) == $id ? 'selected' : '' }}>{{ $registration_groups }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('registration_groups_id'))
+                    <p class="help-block">
+                        {{ $errors->first('registration_groups_id') }}
+                    </p>
+                @endif
+            </div>
+            <div>
+                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+            </div>
+        </form>
+    </div>
+</div>
+
+@endsection

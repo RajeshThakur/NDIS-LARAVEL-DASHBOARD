@@ -1,0 +1,56 @@
+{
+    "name": "dmark/laravel-cacheable",
+    "description": "Dmark Cacheable is a granular, intuitive, and fluent caching system for eloquent models. Simple, but yet powerful, plug-n-play with no hassle.",
+    "type": "library",
+    "keywords": [
+        "trait",
+        "model",
+        "laravel",
+        "eloquent",
+        "intuitive",
+        "cacheable",
+        "granular",
+        "dmark",
+        "fluent",
+        "query",
+        "cache"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.2.0",
+        "illuminate/cache": "~5.8.0",
+        "illuminate/contracts": "~5.8.0",
+        "illuminate/database": "~5.8.0"
+    },
+    "require-dev": {
+        "codedungeon/phpunit-result-printer": "^0.26.0",
+        "illuminate/container": "~5.8.0",
+        "phpunit/phpunit": "^8.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dmark\\Cacheable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dmark\\Cacheable\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

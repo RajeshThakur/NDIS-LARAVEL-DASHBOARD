@@ -1,0 +1,545 @@
+@extends('layouts.admin')
+@section('content')
+<div class="card">
+   <div class="card-header participant">
+      <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+      {{ trans('global.create') }} {{ trans('participants.title_singular') }}
+   </div>
+   <div class="card-body">
+        <form action="{{ route("admin.participants.store") }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="participent-one-form">
+                    <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
+                        <label for="first_name">{{ trans('participants.fields.first_name') }}*</label>
+                        <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name', isset($participant) ? $participant->first_name : '') }}">
+                        @if($errors->has('first_name'))
+                        <p class="help-block">
+                            {{ $errors->first('first_name') }}
+                        </p>
+                        @endif
+                        <p class="helper-block">
+                            {{ trans('participants.fields.first_name_helper') }}
+                        </p>
+                    </div>
+                    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                        <label for="email">{{ trans('participants.fields.email') }}*</label>
+                        <input type="text" id="email" name="email" class="form-control" value="{{ old('email', isset($participant) ? $participant->email : '') }}">
+                        @if($errors->has('email'))
+                        <p class="help-block">
+                            {{ $errors->first('email') }}
+                        </p>
+                        @endif
+                        <p class="helper-block">
+                            {{ trans('participants.fields.email_helper') }}
+                        </p>
+                    </div>
+                    <div class="form-group {{ $errors->has('start_date_ndis') ? 'has-error' : '' }}">
+                        <label for="start_date_ndis">{{ trans('participants.fields.start_date_ndis') }}*</label>
+                        <input type="text" id="start_date_ndis" name="start_date_ndis" class="form-control datefield" value="{{ old('start_date_ndis', isset($participant) ? $participant->start_date_ndis : '') }}">
+                        @if($errors->has('start_date_ndis'))
+                        <p class="help-block">
+                            {{ $errors->first('start_date_ndis') }}
+                        </p>
+                        @endif
+                        <p class="helper-block">
+                            {{ trans('participants.fields.start_date_ndis_helper') }}
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="participent-two-form">
+                    <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
+                        <label for="last_name">{{ trans('participants.fields.last_name') }}*</label>
+                        <input type="text" id="last_name" name="last_name" class="form-control" value="{{ old('last_name', isset($participant) ? $participant->last_name : '') }}">
+                        @if($errors->has('last_name'))
+                        <p class="help-block">
+                            {{ $errors->first('last_name') }}
+                        </p>
+                        @endif
+                        <p class="helper-block">
+                            {{ trans('participants.fields.last_name_helper') }}
+                        </p>
+                    </div>
+                    <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+                        <label for="address">{{ trans('participants.fields.address') }}*</label>
+                        <input type="text" id="address" name="address" class="form-control location" value="{{ old('address', isset($participant) ? $participant->address : '') }}">
+                        @if($errors->has('address'))
+                        <p class="help-block">
+                            {{ $errors->first('address') }}
+                        </p>
+                        @endif
+                        @if($errors->has('lat'))
+                        <p class="help-block">
+                            {{ $errors->first('lat') }}
+                        </p>
+                        @endif
+                        @if($errors->has('lng'))
+                        <p class="help-block">
+                            {{ $errors->first('lng') }}
+                        </p>
+                        @endif
+                        <p class="helper-block">
+                            {{ trans('participants.fields.address_helper') }}
+                        </p>
+                        <input type="hidden" id="lat" name="lat" class="form-control" value="{{ old('lat', isset($participant) ? $participant->lat : '') }}">
+                        <input type="hidden" id="lng" name="lng" class="form-control" value="{{ old('lng', isset($participant) ? $participant->lng : '') }}">
+                    </div>
+                    <div class="form-group {{ $errors->has('end_date_ndis') ? 'has-error' : '' }}">
+                        <label for="end_date_ndis">{{ trans('participants.fields.end_date_ndis') }}*</label>
+                        <input type="text" id="end_date_ndis" name="end_date_ndis" class="form-control datefield" value="{{ old('end_date_ndis', isset($participant) ? $participant->end_date_ndis : '') }}">
+                        @if($errors->has('end_date_ndis'))
+                        <p class="help-block">
+                            {{ $errors->first('end_date_ndis') }}
+                        </p>
+                        @endif
+                        <p class="helper-block">
+                            {{ trans('participants.fields.end_date_ndis_helper') }}
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group {{ $errors->has('ndis_number') ? 'has-error' : '' }}">
+                <label for="ndis_number">{{ trans('participants.fields.ndis_number') }}*</label>
+                <input type="text" id="ndis_number" name="ndis_number" class="form-control" value="{{ old('ndis_number', isset($participant) ? $participant->ndis_number : '') }}">
+                @if($errors->has('ndis_number'))
+                <p class="help-block">
+                    {{ $errors->first('ndis_number') }}
+                </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.ndis_number_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('participant_goals') ? 'has-error' : '' }}">
+                <label for="participant_goals">{{ trans('participants.fields.participant_goals') }}</label>
+                <input type="text" id="participant_goals" name="participant_goals" class="form-control" value="{{ old('participant_goals', isset($participant) ? $participant->participant_goals : '') }}">
+                @if($errors->has('participant_goals'))
+                <p class="help-block">
+                    {{ $errors->first('participant_goals') }}
+                </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.participant_goals_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('special_requirements') ? 'has-error' : '' }}">
+                <label for="special_requirements">{{ trans('participants.fields.special_requirements') }}</label>
+                <textarea id="special_requirements" name="special_requirements" class="form-control ">{{ old('special_requirements', isset($participant) ? $participant->special_requirements : '') }}</textarea>
+                @if($errors->has('special_requirements'))
+                <p class="help-block">
+                    {{ $errors->first('special_requirements') }}
+                </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('participants.fields.special_requirements_helper') }}
+                </p>
+            </div>
+            <div>
+                <input class="btn btn-success" type="submit" value="{{ trans('global.save') }}">
+            </div>
+        </form>
+        <div class="tab-menu">
+            <ul>
+                <li><a href="#" class="tab-a active-a" data-id="tab1">{{ trans('participants.tabs.details') }}</a></li>
+                <li><a href="#" class="tab-a" data-id="tab2">{{ trans('participants.tabs.documents') }}</a></li>
+                <li><a href="#" class="tab-a" data-id="tab3">{{ trans('participants.tabs.Participant_Availability') }}</a></li>
+                <li><a href="#" class="tab-a" data-id="tab4">{{ trans('participants.tabs.All_Service_Booking') }}</a></li>
+                <li><a href="#" class="tab-a" data-id="tab5">{{ trans('participants.tabs.Participant_Notes') }}</a></li>
+            </ul>
+        </div>
+        <!--end of tab-menu-->
+        <div  class="tab tab-active" data-id="tab1">
+           <form action="{{ route("admin.participants.store") }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="participent-one-form">
+                        <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
+                            <label for="first_name">{{ trans('participants.fields.first_name') }}*</label>
+                            <input type="text" id="first_name" name="first_name" class="form-control"  placeholder="{{ trans('participants.fields.enter_participant') }}"value="{{ old('first_name', isset($participant) ? $participant->first_name : '') }}">
+                            @if($errors->has('first_name'))
+                            <p class="help-block">
+                                {{ $errors->first('first_name') }}
+                            </p>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('participants.fields.first_name_helper') }}
+                            </p>
+                        </div>
+                        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                            <label for="email">{{ trans('participants.fields.email') }}*</label>
+                            <input type="text" id="email" name="email" class="form-control"  placeholder="{{ trans('participants.fields.email') }}"value="{{ old('email', isset($participant) ? $participant->email : '') }}">
+                            @if($errors->has('email'))
+                            <p class="help-block">
+                                {{ $errors->first('email') }}
+                            </p>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('participants.fields.email_helper') }}
+                            </p>
+                        </div>
+                        <div class="form-group {{ $errors->has('start_date_ndis') ? 'has-error' : '' }}">
+                            <label for="start_date_ndis">{{ trans('participants.fields.start_date_ndis') }}*</label>
+                            <input type="text" id="start_date_ndis" name="start_date_ndis" class="form-control datefield" placeholder="{{ trans('participants.fields.select_date') }}"value="{{ old('Select Date', isset($participant) ? $participant->select_date : '') }}">
+                            @if($errors->has('start_date_ndis'))
+                            <p class="help-block">
+                                {{ $errors->first('start_date_ndis') }}
+                            </p>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('participants.fields.start_date_ndis_helper') }}
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="participent-two-form">
+                        <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
+                            <label for="sirname">{{ trans('participants.fields.surname') }}*</label>
+                            <input type="text" id="enter_participant" name="enter_participant" class="form-control" placeholder="{{ trans('participants.fields.enter_participant') }}" value="{{ old('Enter participant', isset($participant) ? $participant->surname : '') }}">
+                            @if($errors->has('enter_participant'))
+                            <p class="help-block">
+                                {{ $errors->first('enter_participant') }}
+                            </p>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('participants.fields.last_name_helper') }}
+                            </p>
+                        </div>
+                        <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+                            <label for="address">{{ trans('participants.fields.address') }}*</label>
+                            <input type="text" id="address" name="address" class="form-control location" value="{{ old('address', isset($participant) ? $participant->address : '') }}">
+                            @if($errors->has('address'))
+                            <p class="help-block">
+                                {{ $errors->first('address') }}
+                            </p>
+                            @endif
+                            @if($errors->has('lat'))
+                            <p class="help-block">
+                                {{ $errors->first('lat') }}
+                            </p>
+                            @endif
+                            @if($errors->has('lng'))
+                            <p class="help-block">
+                                {{ $errors->first('lng') }}
+                            </p>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('participants.fields.address_helper') }}
+                            </p>
+                            <input type="hidden" id="lat" name="lat" class="form-control" value="{{ old('lat', isset($participant) ? $participant->lat : '') }}">
+                            <input type="hidden" id="lng" name="lng" class="form-control" value="{{ old('lng', isset($participant) ? $participant->lng : '') }}">
+                        </div>
+                        <div class="form-group {{ $errors->has('end_date_ndis') ? 'has-error' : '' }}">
+                            <label for="end_date_ndis">{{ trans('participants.fields.end_date_ndis') }}*</label>
+                            <input type="text" id="end_date_ndis" name="end_date_ndis" class="form-control datefield" placeholder="{{ trans('participants.fields.select_date') }}" value="{{ old('end_date_ndis', isset($participant) ? $participant->end_date_ndis : '') }}">
+                            @if($errors->has('end_date_ndis'))
+                            <p class="help-block">
+                                {{ $errors->first('end_date_ndis') }}
+                            </p>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('participants.fields.end_date_ndis_helper') }}
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group {{ $errors->has('ndis_number') ? 'has-error' : '' }}">
+                    <label for="ndis_number">{{ trans('participants.fields.ndis_number') }}*</label>
+                    <input type="text" id="ndis_number" name="ndis_number" class="form-control" placeholder="{{ trans('participants.fields.ndis_number') }}" value="{{ old('ndis_number', isset($participant) ? $participant->ndis_number : '') }}">
+                    @if($errors->has('ndis_number'))
+                    <p class="help-block">
+                        {{ $errors->first('ndis_number') }}
+                    </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('participants.fields.ndis_number_helper') }}
+                    </p>
+                </div>
+                <div class="form-group {{ $errors->has('participant_goals') ? 'has-error' : '' }}">
+                    <label for="group_name">{{ trans('participants.fields.approved_registration_group') }}</label>
+                    <input type="text" id="group_name" name="participant_goals" class="form-control"  placeholder="{{ trans('participants.fields.group_name') }}"value="{{ old('participant_goals', isset($participant) ? $participant->group_name : '') }}">
+                    @if($errors->has('group_name'))
+                    <p class="help-block">
+                        {{ $errors->first('participagroup_nament_goals') }}
+                    </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('participants.fields.participant_goals_helper') }}
+                    </p>
+                </div>
+                <div class="form-group {{ $errors->has('participant_goals') ? 'has-error' : '' }}">
+                    <label for="funding_remaining">{{ trans('participants.fields.funding_remaining') }}</label>
+                    <label for="funding_remaining_content">{{ trans('participants.fields.funding_remaining_content') }}</label>
+                    <input type="text" id="funding_remaining" name="funding_remaining" class="form-control"  value="{{ old('funding_remaining_content', isset($participant) ? $participant->funding_remaining_content : '') }}">
+                    
+                </div>
+                <div class="form-group {{ $errors->has('participant_goals') ? 'has-error' : '' }}">
+                    <label for="participant_goals">{{ trans('participants.fields.participant_goals') }}</label>
+                    <input type="text" id="participant_goals" name="participant_goals" class="form-control" value="{{ old('participant_goals', isset($participant) ? $participant->participant_goals : '') }}">
+                    @if($errors->has('participant_goals'))
+                    <p class="help-block">
+                        {{ $errors->first('participant_goals') }}
+                    </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('participants.fields.participant_goals_helper') }}
+                    </p>
+                </div>
+                <div class="form-group {{ $errors->has('special_requirements') ? 'has-error' : '' }}">
+                    <label for="special_requirements">{{ trans('participants.fields.special_considerations') }}</label>
+                    <label for="special_requirements">{{ trans('participants.fields.special_considerations_content') }}</label>
+                    <textarea id="special_requirements" name="special_requirements" class="form-control ">{{ old('special_requirements', isset($participant) ? $participant->special_considerations_content : '') }}</textarea>
+                    @if($errors->has('special_requirements'))
+                    <p class="help-block">
+                        {{ $errors->first('special_requirements') }}
+                    </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('participants.fields.special_requirements_helper') }}
+                    </p>
+                </div>
+                <div class="edit-btn">
+                    <input class="btn btn-success edit" type="submit" value="{{ trans('participants.fields.edit_participant') }}">
+                </div>
+            </form>
+        </div>
+        <!--end of tab one--> 
+        <div  class="tab " data-id="tab2">
+            <div class="participant-document">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Document Name</th>
+                            <th scope="col">Uploaded Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Provider Information</td>
+                            <td>23/04/19</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Contract Singing</td>
+                            <td>10/04/19</td>
+                        </tr>
+                        <tr>
+                           <td>3</td>
+                            <td>Execution Plae</td>
+                            <td>01/04/019</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Melissa Williams</td>
+                            <td>22/03/019</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Care Assessment</td>
+                            <td>18/03/019</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Risk Management</td>
+                            <td>17/03/019</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Corporate Doc</td>
+                            <td>23/02/019</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Reisteration info</td>
+                            <td>16/01/019</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+        </div>
+        <!--end of tab two--> 
+        <div  class="tab participant-three" data-id="tab3">
+            <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Days</th>
+                            <th scope="col">Time Period</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Monday</td>
+                           <td> <div class="input-group mb-3 bg-select">
+                                <div class="input-group mb-3 bg-select">
+                                    <div id="datepicker" class="input-group datefield" data-date-format="mm-dd-yyyy">
+                                        <input class="form-control unstyled" name="renewal_date" required="required"  placeholder="10:00 AM - 12:00 PM Afternoon">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                                <td>
+                                    <div class="edit-remove">
+                                        <a href="#"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                                        <a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                    </div>
+                                </td>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>Tuesday</td>
+                           <td> <div class="input-group mb-3 bg-select">
+                                <div class="input-group mb-3 bg-select">
+                                    <div id="datepicker" class="input-group datefield" data-date-format="mm-dd-yyyy">
+                                        <input class="form-control unstyled" name="renewal_date" required="required"  placeholder="01:00 AM - 03:00 PM Afternoon">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                                <td>
+                                    <div class="edit-remove">
+                                        <a href="#"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                                        <a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                    </div>
+                                </td>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>Wednesday</td>
+                            <td> <div class="input-group mb-3 bg-select">
+                                <div class="input-group mb-3 bg-select">
+                                    <div id="datepicker" class="input-group datefield" data-date-format="mm-dd-yyyy">
+                                         <input class="form-control unstyled" name="renewal_date" required="required"  placeholder="10:00 AM - 12:00 PM Afternoon">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                                <td>
+                                    <div class="edit-remove">
+                                        <a href="#"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                                        <a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                    </div>
+                                </td>
+                           </td>
+                        </tr>
+                        <tr>
+                            <td>thursday</td>
+                             <td> <div class="input-group mb-3 bg-select">
+                                <div class="input-group mb-3 bg-select">
+                                    <div id="datepicker" class="input-group datefield" data-date-format="mm-dd-yyyy">
+                                        <input class="form-control unstyled" name="renewal_date" required="required"  placeholder="01:00 AM - 03:00 PM Afternoon">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                                <td>
+                                    <div class="edit-remove">
+                                        <a href="#"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                                        <a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                    </div>
+                                </td>
+                           </td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                              <td> <div class="input-group mb-3 bg-select">
+                                <div class="input-group mb-3 bg-select">
+                                    <div id="datepicker" class="input-group datefield" data-date-format="mm-dd-yyyy">
+                                         <input class="form-control unstyled" name="renewal_date" required="required"  placeholder="10:00 AM - 12:00 PM Afternoon">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                                <td>
+                                    <div class="edit-remove">
+                                        <a href="#"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                                        <a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                    </div>
+                                </td>
+                           </td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                             <td> <div class="input-group mb-3 bg-select">
+                                <div class="input-group mb-3 bg-select">
+                                    <div id="datepicker" class="input-group datefield" data-date-format="mm-dd-yyyy">
+                                        <input class="form-control unstyled" name="renewal_date" required="required"  placeholder="01:00 AM - 03:00 PM Afternoon">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                                <td>
+                                    <div class="edit-remove">
+                                        <a href="#"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                                        <a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                    </div>
+                                </td>
+                           </td>
+                        </tr>
+                        <tr>
+                             <td>Sunday</td>
+                           <td> <div class="input-group mb-3 bg-select">
+                                <div class="input-group mb-3 bg-select">
+                                    <div id="datepicker" class="input-group datefield" data-date-format="mm-dd-yyyy">
+                                         <input class="form-control unstyled" name="renewal_date" required="required"  placeholder="10:00 AM - 12:00 PM Afternoon">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                                <td>
+                                    <div class="edit-remove">
+                                        <a href="#"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                                        <a href="#"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                    </div>
+                                </td>
+                           </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+        </div>
+        <!--end of tab three--> 
+        <div  class="tab " data-id="tab4">
+            <h2>heading of tab four</h2>
+            <p>Content of tab four</p>
+        </div>
+        <!--end of tab three--> 
+        <div  class="tab " data-id="tab5">
+            <h2>heading of tab five</h2>
+            <p>Content of tab five</p>
+        </div>
+        <!--end of tab three--> 
+   </div>
+</div>
+@endsection
+@section('scripts')
+@parent
+<script>
+   jQuery(document).ready(function(){ 
+      jQuery('.tab-a').click(function(){  
+          console.log(jQuery(this).attr('data-id'));
+         jQuery(".tab").removeClass('tab-active');
+          jQuery(".tab[data-id="+jQuery(this).attr('data-id')+"]").addClass("tab-active");
+        jQuery(".tab-a").removeClass('active-a');
+         jQuery(this).parent().find(".tab-a").addClass('active-a');
+        });
+
+        $("#datepicker").datepicker({ 
+                autoclose: true, 
+                todayHighlight: true
+        }).datepicker('update', new Date());
+   });
+</script>
+
+@endsection
