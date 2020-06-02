@@ -1,0 +1,12 @@
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+
+
+# Laravel 5 & Lumen specific
+public/storage
+public/uploads
+storage/*.key
+.env

@@ -25,12 +25,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('queue:listen')->everyMinute();
-        $schedule->command('Booking:Status')->everyMinute();
-        $schedule->command('Agreement:Provider')->daily();
-        $schedule->command('Agreement:Participant')->daily();
-        $schedule->command('Agreement:Worker')->daily();
-        $schedule->command('ParticipantPlan:Status')->daily();
-        $schedule->command('ProviderPlan:Status')->daily();
+        // $schedule->command('Booking:Status')->everyMinute();
+        // $schedule->command('Agreement:Provider')->daily();
+        // $schedule->command('Agreement:Participant')->daily();
+        // $schedule->command('Agreement:Worker')->daily();
+        // $schedule->command('ParticipantPlan:Status')->daily();
+        // $schedule->command('ProviderPlan:Status')->daily();
     }
 
     /**

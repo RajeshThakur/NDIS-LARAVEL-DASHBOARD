@@ -15,7 +15,7 @@
 
 And that's it, go to your domain and login:
 
-Email: deepak@superappbros.com.au
+Email: rajesh@rytspace.com
 Password: Scorp5683
 
 P.S. If you want to use this admin panel for existing project, here's an article with instructions
